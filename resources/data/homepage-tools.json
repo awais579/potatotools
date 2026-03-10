@@ -1,0 +1,337 @@
+{
+  "browse_tools_by_category": {
+    "eyebrow": "Pick a basket, grab a tool.",
+    "title": "Browse Tools by Category",
+    "description": "Choose a category to find fast, free, and easy-to-use online tools.",
+    "browse_all_link": {
+      "label": "Browse all tools",
+      "url": "/tools",
+      "aria_label": "Browse all tools"
+    },
+    "items": [
+      {
+        "icon_class": "fas fa-calculator",
+        "title": "Life & Utility Calculators",
+        "description": "Quick calculators for everyday needs, giving simple, fast, and accurate online results.",
+        "examples": "Examples: Height, Age, Snow Day, Grow a Garden",
+        "cta": {
+          "label": "Explore Calculators",
+          "url": "/categories/calculators",
+          "aria_label": "Explore Life & Utility Calculators category"
+        }
+      },
+      {
+        "icon_class": "fas fa-paint-brush",
+        "title": "Fun & Creative Tools",
+        "description": "Creative tools to generate and style content in seconds for faster online sharing.",
+        "examples": "Examples: Text to Handwriting, Random Animal",
+        "cta": {
+          "label": "Explore Creative Tools",
+          "url": "/categories/creative",
+          "aria_label": "Explore Fun & Creative Tools category"
+        }
+      },
+      {
+        "icon_class": "fas fa-sort-alpha-down",
+        "title": "Developer & Data Tools",
+        "description": "Clean, convert, and decode data quickly with professional online tools for daily workflows.",
+        "examples": "Examples: CSV Cleaner, CSV to JSON, JSON to CSV, JWT Decoder, HTML to PPT",
+        "cta": {
+          "label": "Explore Dev Tools",
+          "url": "/categories/developer-data",
+          "aria_label": "Explore Developer & Data Tools category"
+        }
+      }
+    ]
+  },
+  "popular_tools": {
+    "eyebrow": "MOST USED TOOLS",
+    "title": "Popular Tools",
+    "description": "Quick picks our users love - open an online tool and get instant results.",
+    "browse_all_link": {
+      "label": "Browse all tools",
+      "url": "/tools",
+      "aria_label": "Browse all tools"
+    },
+    "items": [
+      {
+        "icon_class": "fa-solid fa-copy",
+        "title": "CSV Duplicate Remover",
+        "description": "Remove duplicate rows from CSV files instantly - clean data in one click.",
+        "category": "Developer & Data Tools",
+        "url": "/tools/csv-duplicate-remover",
+        "aria_label": "Open CSV Duplicate Remover tool",
+        "badge": "No login required"
+      },
+      {
+        "icon_class": "fa-solid fa-pen-nib",
+        "title": "Text to Handwriting",
+        "description": "Turn plain text into handwriting style images for notes, posts, and fun.",
+        "category": "Fun & Creative Tools",
+        "url": "/tools/text-to-handwriting",
+        "aria_label": "Open Text to Handwriting tool",
+        "badge": "No login required"
+      },
+      {
+        "icon_class": "fa-solid fa-calendar-days",
+        "title": "Age Calculator (Exact)",
+        "description": "Calculate exact age in years, months, and days with accurate instant results.",
+        "category": "Life & Utility Calculators",
+        "url": "/tools/age-calculator",
+        "aria_label": "Open Age Calculator (Exact) tool",
+        "badge": "No login required"
+      }
+    ]
+  },
+  "tools_grid": {
+    "eyebrow": "ALL TOOLS",
+    "title": "Tools Grid",
+    "description": "Browse all tools - fast, private, and easy to use.",
+    "browse_all_link": {
+      "label": "Browse all tools",
+      "url": "/tools",
+      "aria_label": "Browse all tools"
+    },
+    "categories": [
+      {
+        "title": "Life & Utility Calculators",
+        "description": "Everyday calculators that feel as easy as peeling a potato.",
+        "tools": [
+          {
+            "icon_class": "fa-solid fa-ruler-vertical",
+            "title": "Height Calculator",
+            "description": "Convert centimeters, feet, and inches with instant accurate results.",
+            "url": "/tools/height-calculator",
+            "aria_label": "Open Height Calculator tool"
+          },
+          {
+            "icon_class": "fa-solid fa-calendar-days",
+            "title": "Chronological Age Calculator",
+            "description": "Calculate exact age in years, months, and days instantly.",
+            "url": "/tools/age-calculator",
+            "aria_label": "Open Chronological Age Calculator tool"
+          },
+          {
+            "icon_class": "fa-solid fa-snowflake",
+            "title": "Snow Day Calculator",
+            "description": "Estimate school closure chances quickly with weather-based inputs.",
+            "url": "/tools/snow-day-calculator",
+            "aria_label": "Open Snow Day Calculator tool"
+          },
+          {
+            "icon_class": "fa-solid fa-seedling",
+            "title": "Grow a Garden Calculator",
+            "description": "Plan planting schedules with practical seasonal garden calculations.",
+            "url": "/tools/grow-a-garden-calculator",
+            "aria_label": "Open Grow a Garden Calculator tool"
+          }
+        ]
+      },
+      {
+        "title": "Fun & Creative Tools",
+        "description": "Create, generate, and style content quickly - zero complexity.",
+        "tools": [
+          {
+            "icon_class": "fa-solid fa-pen-nib",
+            "title": "Text to Handwriting Converter",
+            "description": "Turn typed text into handwriting-style pages for quick exports.",
+            "url": "/tools/text-to-handwriting",
+            "aria_label": "Open Text to Handwriting Converter tool"
+          },
+          {
+            "icon_class": "fa-solid fa-paw",
+            "title": "Random Animal Generator",
+            "description": "Generate random animal ideas for learning, games, and fun.",
+            "url": "/tools/random-animal-generator",
+            "aria_label": "Open Random Animal Generator tool"
+          }
+        ]
+      },
+      {
+        "title": "Developer & Data Tools",
+        "description": "Clean, convert, and decode data fast with developer-friendly tools.",
+        "tools": [
+          {
+            "icon_class": "fa-solid fa-copy",
+            "title": "CSV Duplicate Remover",
+            "description": "Remove duplicate rows from CSV files in one click.",
+            "url": "/tools/csv-duplicate-remover",
+            "aria_label": "Open CSV Duplicate Remover tool"
+          },
+          {
+            "icon_class": "fa-solid fa-broom",
+            "title": "CSV Cleaner",
+            "description": "Clean messy CSV data and standardize values quickly.",
+            "url": "/tools/csv-cleaner",
+            "aria_label": "Open CSV Cleaner tool"
+          },
+          {
+            "icon_class": "fa-solid fa-file-code",
+            "title": "CSV to JSON Converter",
+            "description": "Convert CSV tables into clean JSON for APIs instantly.",
+            "url": "/tools/csv-to-json",
+            "aria_label": "Open CSV to JSON Converter tool"
+          },
+          {
+            "icon_class": "fa-solid fa-file-csv",
+            "title": "JSON to CSV Converter",
+            "description": "Turn JSON objects into CSV rows for spreadsheet workflows.",
+            "url": "/tools/json-to-csv",
+            "aria_label": "Open JSON to CSV Converter tool"
+          },
+          {
+            "icon_class": "fa-solid fa-database",
+            "title": "CSV to MySQL Converter",
+            "description": "Generate MySQL-ready statements directly from structured CSV files.",
+            "url": "/tools/csv-to-mysql",
+            "aria_label": "Open CSV to MySQL Converter tool"
+          },
+          {
+            "icon_class": "fa-solid fa-key",
+            "title": "JWT Decoder",
+            "description": "Decode JWT tokens instantly and inspect headers and payloads.",
+            "url": "/tools/jwt-decoder",
+            "aria_label": "Open JWT Decoder tool"
+          },
+          {
+            "icon_class": "fa-solid fa-file-powerpoint",
+            "title": "HTML to PPT Converter",
+            "description": "Convert HTML content into clean presentation slides quickly.",
+            "url": "/tools/html-to-ppt",
+            "aria_label": "Open HTML to PPT Converter tool"
+          }
+        ]
+      }
+    ]
+  },
+  "recently_added_tools": {
+    "eyebrow": "JUST ADDED",
+    "title": "Recently Added Tools",
+    "description": "Fresh tools now live on PotatoTools. Try the latest additions built for everyday tasks.",
+    "browse_all_link": {
+      "label": "Browse all tools",
+      "url": "/tools",
+      "aria_label": "Browse all tools"
+    },
+    "items": [
+      {
+        "icon_class": "fa-solid fa-ruler-vertical",
+        "title": "Height Calculator",
+        "description": "Convert centimeters and feet/inches instantly with accurate formulas.",
+        "category": "Life & Utility Calculators",
+        "url": "/tools/height-calculator",
+        "aria_label": "Open Height Calculator tool",
+        "badge": "New"
+      },
+      {
+        "icon_class": "fa-solid fa-key",
+        "title": "JWT Decoder",
+        "description": "Decode JWT tokens quickly and inspect header and payload data.",
+        "category": "Developer & Data Tools",
+        "url": "/tools/jwt-decoder",
+        "aria_label": "Open JWT Decoder tool",
+        "badge": "New"
+      },
+      {
+        "icon_class": "fa-solid fa-broom",
+        "title": "CSV Cleaner",
+        "description": "Clean messy CSV files and standardize values with one click.",
+        "category": "Developer & Data Tools",
+        "url": "/tools/csv-cleaner",
+        "aria_label": "Open CSV Cleaner tool",
+        "badge": "New"
+      },
+      {
+        "icon_class": "fa-solid fa-paw",
+        "title": "Random Animal Generator",
+        "description": "Generate random animal ideas for fun, learning, and classroom use.",
+        "category": "Fun & Creative Tools",
+        "url": "/tools/random-animal-generator",
+        "aria_label": "Open Random Animal Generator tool",
+        "badge": "New"
+      }
+    ]
+  },
+  "tool_request": {
+    "eyebrow": "BUILD WITH US",
+    "title": "Request a Potato Tool",
+    "description": "Can't find the tool you need? Share your idea and help us build the next useful PotatoTool.",
+    "points": [
+      "Request the exact tool you need for real-world tasks",
+      "Help shape upcoming PotatoTools releases",
+      "We prioritize ideas that save users time"
+    ],
+    "panel_eyebrow": "HAVE AN IDEA?",
+    "panel_title": "Suggest your next tool",
+    "panel_description": "Tell us what you need and where you plan to use it. We review requests regularly.",
+    "cta": {
+      "label": "Request a Tool",
+      "url": "mailto:hello@potatotools.com?subject=PotatoTools%20Tool%20Request",
+      "aria_label": "Request a new tool via email"
+    },
+    "secondary_link": {
+      "label": "Browse current tools",
+      "url": "/tools",
+      "aria_label": "Browse current tools"
+    },
+    "microcopy": "Tell us your idea in a minute."
+  },
+  "faqs": {
+    "home": {
+      "eyebrow": "FAQ",
+      "title": "Frequently Asked Questions",
+      "description": "Quick answers about privacy, speed, and using PotatoTools.",
+      "open_first": true,
+      "items": [
+        {
+          "question": "Is PotatoTools free to use?",
+          "answer": "Yes. Core tools are free to use and available instantly without signup."
+        },
+        {
+          "question": "Do I need an account to use these tools?",
+          "answer": "No account is required. Open a tool, enter input, and get your result."
+        },
+        {
+          "question": "Does PotatoTools work on mobile?",
+          "answer": "Yes. The interface is responsive and works on mobile, tablet, and desktop."
+        }
+      ]
+    },
+    "snow_day_calculator": {
+      "title": "Frequently Asked Questions",
+      "open_first": true,
+      "items": [
+        {
+          "question": "How accurate is this snow day prediction?",
+          "answer": "It is an estimate based on your inputs and common closure patterns. Always verify with official district announcements."
+        },
+        {
+          "question": "Does it work for every school district?",
+          "answer": "Policies vary by district. Use this as a planning signal, not a guaranteed official decision."
+        },
+        {
+          "question": "When should I check again?",
+          "answer": "Check again closer to snowfall, especially 12 to 18 hours before the expected event."
+        }
+      ]
+    },
+    "height_calculator": {
+      "title": "FAQ",
+      "open_first": true,
+      "items": [
+        {
+          "question": "How accurate is this height calculator?",
+          "answer": "It uses the standard conversion value (1 inch = 2.54 cm) and returns rounded values for easy reading."
+        },
+        {
+          "question": "Can I convert feet and inches back to centimeters?",
+          "answer": "Yes. Switch to the feet/inches tab, enter values, and the calculator converts to centimeters instantly."
+        },
+        {
+          "question": "Why do some inch results include decimals?",
+          "answer": "Decimal inches provide better precision. You can round them further for your specific use case."
+        }
+      ]
+    }
+  }
+}
