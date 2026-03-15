@@ -56,3 +56,19 @@ Route::post('/login', function (Request $request) {
         ->withInput($request->only('email'))
         ->with('status', 'Login is not connected yet. The page is ready for design review.');
 })->name('login.submit');
+
+Route::get('/signup', function () {
+    return view('auth.signup');
+})->name('signup');
+
+Route::post('/signup', function (Request $request) {
+    $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'email'],
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
+    ]);
+
+    return back()
+        ->withInput($request->only('name', 'email'))
+        ->with('status', 'Signup is not connected yet. The page is ready for design review.');
+})->name('signup.submit');
