@@ -33,28 +33,103 @@
         @apply mx-auto w-full max-w-[1120px] px-4 sm:px-6;
     }
 
+    .pt-link-arrow {
+        @apply transition-colors duration-200;
+    }
+
+    .pt-link-arrow .pt-link-arrow-icon {
+        display: inline-block;
+        transform: translateX(0);
+        transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
+    }
+
+    .pt-link-arrow:hover .pt-link-arrow-icon,
+    .pt-link-arrow:focus-visible .pt-link-arrow-icon {
+        transform: translateX(6px);
+    }
+
+    .pt-link-underline {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 0.15rem;
+    }
+
+    .pt-link-underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .pt-link-underline:hover::after,
+    .pt-link-underline:focus-visible::after {
+        transform: scaleX(1);
+    }
+
     .pt-btn-primary {
-        @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:brightness-95;
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:brightness-95;
     }
 
     .pt-btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 rounded-full border border-stone-200/60 bg-white/70 px-5 py-2.5 text-sm font-bold text-stone-700 transition hover:border-primary/40 hover:text-stone-900;
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-stone-200/60 bg-white/70 px-5 py-2.5 text-sm font-bold text-stone-700 transition hover:border-primary/40 hover:text-stone-900;
     }
 
     .pt-card {
         @apply rounded-2xl border border-stone-200/50 bg-white/80 shadow-sm backdrop-blur;
     }
 
+    .pt-card-elevated {
+        box-shadow: 0 2px 8px rgba(32, 24, 16, 0.05);
+    }
+
     .pt-chip {
         @apply inline-flex items-center gap-2 rounded-full border border-stone-200/70 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:border-primary/60 hover:text-primary;
+    }
+
+    .pt-chip-static {
+        cursor: default;
+        transition: none;
+    }
+
+    .pt-chip-static:hover {
+        border-color: rgba(231, 229, 228, 0.7);
+        color: rgb(68, 64, 60);
     }
 
     .pt-input {
         @apply w-full rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none ring-primary/20 placeholder:text-stone-400 focus:ring-2;
     }
 
+    .pt-input-tall {
+        min-height: 3.25rem;
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+    }
+
     .pt-label {
         @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-stone-500;
+    }
+
+    .pt-field {
+        display: grid;
+        gap: 0.7rem;
+    }
+
+    .pt-pill-group {
+        @apply gap-1.5 p-1.5;
+    }
+
+    .pt-result-stack {
+        display: grid;
+        gap: 1rem;
+        align-content: start;
     }
 
     .pt-accordion {
@@ -81,4 +156,38 @@
         @apply flex items-center justify-between rounded-2xl border border-stone-200/70 bg-[#f2e6d9] px-5 py-4 text-sm font-semibold text-stone-800;
     }
 
+    .pt-tool-card {
+        cursor: pointer;
+        transition: box-shadow 0.22s ease, border-color 0.22s ease,
+            background-color 0.22s ease;
+    }
+
+    .pt-tool-card:hover,
+    .pt-tool-card:focus-within {
+        border-color: #e7c79a;
+        background-color: #fffdf9;
+        box-shadow: 0 10px 24px rgba(32, 24, 16, 0.12),
+            0 0 0 1px rgba(198, 134, 45, 0.12);
+    }
+
+    .pt-faq summary {
+        list-style: none;
+    }
+
+    .pt-faq summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .pt-faq summary .faq-plus {
+        transition: transform 0.2s ease;
+    }
+
+    .pt-faq[open] summary .faq-plus {
+        transform: rotate(45deg);
+    }
+
+    .pt-date-input::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: 0.75;
+    }
 }

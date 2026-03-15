@@ -23,11 +23,13 @@ Route::get('/', function () use ($getHomePageData) {
     ]);
 })->name('home');
 
-Route::get('/tools/height-calculator', function () use ($getHomePageData) {
+Route::redirect('/tools/height-calculator', '/tools/height-converter', 301);
+
+Route::get('/tools/height-converter', function () use ($getHomePageData) {
     return view('tools.height-calculator', [
         'homePageData' => $getHomePageData(),
     ]);
-})->name('tools.height-calculator');
+})->name('tools.height-converter');
 
 Route::get('/tools/age-calculator', function () {
     return view('tools.age-calculator');

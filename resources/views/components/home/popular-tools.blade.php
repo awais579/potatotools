@@ -25,7 +25,10 @@
 
         <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             @foreach ($items as $item)
-                <article class="pt-soft-card pt-tool-card group p-6 text-left transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:ring-1 hover:ring-primary/20 focus-within:-translate-y-1 focus-within:shadow-xl focus-within:ring-1 focus-within:ring-primary/20">
+                <a
+                    href="{{ $item['url'] ?? '#' }}"
+                    aria-label="{{ $item['aria_label'] ?? 'Open tool' }}"
+                    class="pt-soft-card pt-tool-card group block p-6 text-left transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:ring-1 hover:ring-primary/20 focus-visible:-translate-y-1 focus-visible:shadow-xl focus-visible:ring-1 focus-visible:ring-primary/20 focus-visible:outline-none">
                     <div class="pt-image-placeholder inline-flex w-fit shrink-0 rounded-2xl bg-white px-6 py-3 shadow-sm transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:scale-[1.03]">
                         <i class="{{ $item['icon_class'] ?? 'fa-solid fa-tools' }} text-xl text-primary" aria-hidden="true"></i>
                     </div>
@@ -33,16 +36,13 @@
                     <p class="mt-2 max-w-[34ch] text-sm leading-relaxed text-stone-600">{{ $item['description'] ?? '' }}</p>
                     <p class="mt-2 max-w-[34ch] text-xs font-semibold text-stone-500">Category: {{ $item['category'] ?? '' }}</p>
                     <div class="mt-5 flex items-center justify-start gap-4">
-                        <a
-                            href="{{ $item['url'] ?? '#' }}"
-                            aria-label="{{ $item['aria_label'] ?? 'Open tool' }}"
-                            class="pt-link-arrow inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors duration-200 focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2">
+                        <span class="pt-link-arrow inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors duration-200">
                             Open Tool
                             <span class="pt-link-arrow-icon" aria-hidden="true">&rarr;</span>
-                        </a>
+                        </span>
                     </div>
                     <p class="mt-1 text-xs font-semibold text-stone-500">{{ $item['badge'] ?? '' }}</p>
-                </article>
+                </a>
             @endforeach
         </div>
     </div>
