@@ -130,7 +130,7 @@
                             <i class="fa-regular fa-user" aria-hidden="true"></i>
                             Login
                         </a>
-                        <a href="/signup" class="pt-btn-primary flex w-full justify-start py-3 text-sm">
+                        <a href="{{ route('signup') }}" class="pt-btn-primary flex w-full justify-start py-3 text-sm">
                             <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
                             Signup
                         </a>
@@ -221,7 +221,7 @@
                     <a href="{{ route('login') }}" class="pt-btn-secondary w-full justify-center py-3">
                         Login
                     </a>
-                    <a href="/signup" class="pt-btn-primary w-full justify-center py-3">
+                    <a href="{{ route('signup') }}" class="pt-btn-primary w-full justify-center py-3">
                         Signup
                     </a>
                 </div>
