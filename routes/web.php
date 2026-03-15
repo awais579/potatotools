@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 $getHomePageData = function () {
@@ -40,3 +41,18 @@ Route::get('/tools/snow-day-calculator', function () use ($getHomePageData) {
         'homePageData' => $getHomePageData(),
     ]);
 })->name('tools.snow-day-calculator');
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::post('/login', function (Request $request) {
+    $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required', 'string'],
+    ]);
+
+    return back()
+        ->withInput($request->only('email'))
+        ->with('status', 'Login is not connected yet. The page is ready for design review.');
+})->name('login.submit');

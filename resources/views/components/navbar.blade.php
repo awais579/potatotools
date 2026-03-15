@@ -126,7 +126,7 @@
                     class="pointer-events-none invisible absolute right-0 top-full z-30 mt-3 w-56 rounded-3xl border border-stone-200/80 bg-white/95 p-3 opacity-0 shadow-[0_18px_45px_rgba(32,24,16,0.12)] transition duration-200">
                     <p class="px-3 pb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-stone-500">Account</p>
                     <div class="space-y-2">
-                        <a href="/login" class="flex items-center gap-2 rounded-2xl border border-stone-200/80 px-4 py-3 text-sm font-semibold text-stone-800 transition hover:border-primary/40 hover:bg-potato-beige/80 hover:text-primary">
+                        <a href="{{ route('login') }}" class="flex items-center gap-2 rounded-2xl border border-stone-200/80 px-4 py-3 text-sm font-semibold text-stone-800 transition hover:border-primary/40 hover:bg-potato-beige/80 hover:text-primary">
                             <i class="fa-regular fa-user" aria-hidden="true"></i>
                             Login
                         </a>
@@ -218,7 +218,7 @@
                 </div>
 
                 <div class="grid gap-3 sm:grid-cols-2">
-                    <a href="/login" class="pt-btn-secondary w-full justify-center py-3">
+                    <a href="{{ route('login') }}" class="pt-btn-secondary w-full justify-center py-3">
                         Login
                     </a>
                     <a href="/signup" class="pt-btn-primary w-full justify-center py-3">
