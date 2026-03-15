@@ -65,25 +65,3 @@
         </div>
     </div>
 </section>
-
-@once
-    @push('head')
-        <style>
-            .pt-faq summary {
-                list-style: none;
-            }
-
-            .pt-faq summary::-webkit-details-marker {
-                display: none;
-            }
-
-            .pt-faq summary .faq-plus {
-                transition: transform 0.2s ease;
-            }
-
-            .pt-faq[open] summary .faq-plus {
-                transform: rotate(45deg);
-            }
-        </style>
-    @endpush
-@endonce

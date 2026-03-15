@@ -99,10 +99,10 @@
         "tools": [
           {
             "icon_class": "fa-solid fa-ruler-vertical",
-            "title": "Height Calculator",
-            "description": "Convert centimeters, feet, and inches with instant accurate results.",
-            "url": "/tools/height-calculator",
-            "aria_label": "Open Height Calculator tool"
+            "title": "Height Converter",
+            "description": "Convert centimeters, meters, feet, and inches with instant accurate results.",
+            "url": "/tools/height-converter",
+            "aria_label": "Open Height Converter tool"
           },
           {
             "icon_class": "fa-solid fa-calendar-days",
@@ -216,11 +216,11 @@
     "items": [
       {
         "icon_class": "fa-solid fa-ruler-vertical",
-        "title": "Height Calculator",
-        "description": "Convert centimeters and feet/inches instantly with accurate formulas.",
+        "title": "Height Converter",
+        "description": "Convert centimeters, meters, feet, and inches instantly with exact math.",
         "category": "Life & Utility Calculators",
-        "url": "/tools/height-calculator",
-        "aria_label": "Open Height Calculator tool",
+        "url": "/tools/height-converter",
+        "aria_label": "Open Height Converter tool",
         "badge": "New"
       },
       {
@@ -316,20 +316,29 @@
       ]
     },
     "height_calculator": {
-      "title": "FAQ",
+      "title": "Frequently Asked Questions",
+      "description": "Quick answers about height units, conversion math, and how this converter works.",
       "open_first": true,
       "items": [
         {
-          "question": "How accurate is this height calculator?",
-          "answer": "It uses the standard conversion value (1 inch = 2.54 cm) and returns rounded values for easy reading."
+          "question": "How does this height converter work?",
+          "answer": "You enter a height, choose the unit you have, choose the unit you want, and the tool converts that value using exact standard conversion factors."
         },
         {
-          "question": "Can I convert feet and inches back to centimeters?",
-          "answer": "Yes. Switch to the feet/inches tab, enter values, and the calculator converts to centimeters instantly."
+          "question": "Is this height conversion exact?",
+          "answer": "Yes. This tool uses exact standard conversion factors such as 1 inch = 2.54 centimeters and 1 foot = 12 inches."
         },
         {
-          "question": "Why do some inch results include decimals?",
-          "answer": "Decimal inches provide better precision. You can round them further for your specific use case."
+          "question": "Which height units can I convert here?",
+          "answer": "You can convert centimeters, meters, feet, inches, and feet plus inches. The result area also shows the same value in the other common formats."
+        },
+        {
+          "question": "Why are feet and inches split into two inputs?",
+          "answer": "Feet and inches are commonly entered as two parts, such as 5 feet 9 inches. The main field takes feet and the extra field takes inches."
+        },
+        {
+          "question": "Do I only get one result?",
+          "answer": "No. The main result shows the target unit you selected, and below it the tool also shows centimeters, meters, feet, inches, and feet plus inches for convenience."
         }
       ]
     }

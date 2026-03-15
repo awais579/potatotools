@@ -29,19 +29,19 @@
         </p>
 
         <div class="mt-8 grid gap-5 md:grid-cols-2">
-            <form id="snow-form" class="pt-card p-5 sm:p-6">
+            <form id="snow-form" class="pt-card pt-card-elevated p-5 sm:p-6">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-gear text-primary" aria-hidden="true"></i>
                     <h2 class="text-2xl font-semibold text-stone-900">Enter Conditions</h2>
                 </div>
 
                 <div class="mt-5 space-y-4">
-                    <div>
+                    <div class="pt-field">
                         <label for="city" class="pt-label">City / Location</label>
                         <input id="city" type="text" class="pt-input" placeholder="e.g. Minneapolis, MN">
                     </div>
 
-                    <div>
+                    <div class="pt-field">
                         <label for="school-type" class="pt-label">School Type</label>
                         <select id="school-type" class="pt-input">
                             <option value="elementary" selected>Elementary School</option>
@@ -53,15 +53,15 @@
                     </div>
 
                     <div class="grid gap-3 sm:grid-cols-3">
-                        <div>
+                        <div class="pt-field">
                             <label for="snow-in" class="pt-label">Snow (in)</label>
                             <input id="snow-in" type="number" min="0" max="60" step="0.1" value="0" class="pt-input">
                         </div>
-                        <div>
+                        <div class="pt-field">
                             <label for="temp-f" class="pt-label">Temp (F)</label>
                             <input id="temp-f" type="number" min="-40" max="60" step="0.1" value="32" class="pt-input">
                         </div>
-                        <div>
+                        <div class="pt-field">
                             <label for="wind-mph" class="pt-label">Wind (mph)</label>
                             <input id="wind-mph" type="number" min="0" max="80" step="0.1" value="10" class="pt-input">
                         </div>
@@ -73,7 +73,7 @@
                 <button type="submit" class="pt-btn-primary mt-6 w-full py-3 text-base">Predict Snow Day</button>
             </form>
 
-            <section class="pt-card flex flex-col items-center p-5 text-center sm:p-6">
+            <section class="pt-card pt-card-elevated flex flex-col items-center p-5 text-center sm:p-6">
                 <h2 class="text-2xl font-semibold text-stone-900">Snow Day Probability</h2>
 
                 <div id="snow-gauge" class="snow-gauge mt-6" style="--value: 0;">
@@ -133,8 +133,9 @@
     <section class="pt-container py-8">
         <div class="flex items-center justify-between gap-4">
             <h2 class="text-3xl font-semibold text-stone-900">Related Potato Tools</h2>
-            <a href="{{ route('home') }}#pick-potato" class="text-sm font-semibold text-primary hover:text-primary/80">
-                View all tools &rarr;
+            <a href="{{ route('home') }}#pick-potato" class="pt-link-arrow inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80">
+                View all tools
+                <span class="pt-link-arrow-icon" aria-hidden="true">&rarr;</span>
             </a>
         </div>
 

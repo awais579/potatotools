@@ -29,29 +29,29 @@
         </div>
 
         <div class="mt-8 grid gap-5 md:grid-cols-2">
-            <form id="age-form" class="pt-card p-5 sm:p-6">
+            <form id="age-form" class="pt-card pt-card-elevated p-5 sm:p-6">
                 <div class="flex items-center gap-2">
                     <i class="fa-regular fa-pen-to-square text-accent" aria-hidden="true"></i>
                     <h2 class="text-2xl font-semibold text-stone-900">Enter Dates</h2>
                 </div>
 
                 <div class="mt-5 space-y-4">
-                    <div>
+                    <div class="pt-field">
                         <label for="birth-date" class="pt-label">Date of Birth</label>
                         <input
                             id="birth-date"
                             type="date"
-                            class="age-date pt-input"
+                            class="pt-date-input pt-input"
                             required>
                     </div>
 
-                    <div>
+                    <div class="pt-field">
                         <label for="as-of-date" class="pt-label">Calculate Age On (Optional)</label>
                         <input
                             id="as-of-date"
                             type="date"
-                            class="age-date pt-input">
-                        <p class="mt-1 text-xs text-stone-500">
+                            class="pt-date-input pt-input">
+                        <p class="text-xs text-stone-500">
                             Defaults to today if left blank.
                         </p>
                     </div>
@@ -65,7 +65,7 @@
                 </button>
             </form>
 
-            <section class="pt-card relative overflow-hidden p-5 sm:p-6">
+            <section class="pt-card pt-card-elevated relative overflow-hidden p-5 sm:p-6">
                 <div class="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent/15 text-accent">
                     <i class="fa-solid fa-seedling" aria-hidden="true"></i>
                 </div>
@@ -140,8 +140,9 @@
     <section class="pt-container py-8">
         <div class="flex items-center justify-between gap-4">
             <h2 class="text-3xl font-semibold text-stone-900">Related Potato Tools</h2>
-            <a href="{{ route('home') }}#pick-potato" class="text-sm font-semibold text-primary hover:text-primary/80">
-                View all tools &rarr;
+            <a href="{{ route('home') }}#pick-potato" class="pt-link-arrow inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80">
+                View all tools
+                <span class="pt-link-arrow-icon" aria-hidden="true">&rarr;</span>
             </a>
         </div>
         <div class="mt-5 grid gap-4 md:grid-cols-3">
@@ -149,9 +150,9 @@
                 <div class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-100 text-blue-600">
                     <i class="fa-solid fa-ruler-vertical" aria-hidden="true"></i>
                 </div>
-                <h3 class="mt-3 text-xl font-semibold text-stone-900">Height Calculator</h3>
-                <p class="mt-2 text-sm text-stone-600">Predict adult height or convert between units effortlessly.</p>
-                <a href="{{ route('tools.height-calculator') }}" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                <h3 class="mt-3 text-xl font-semibold text-stone-900">Height Converter</h3>
+                <p class="mt-2 text-sm text-stone-600">Convert between centimeters, meters, feet, and inches instantly.</p>
+                <a href="{{ route('tools.height-converter') }}" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
                     Open Tool
                     <span aria-hidden="true">&rarr;</span>
                 </a>
@@ -183,7 +184,7 @@
     <section class="pt-container pb-8">
         <h2 class="text-3xl font-semibold text-stone-900">Frequently Asked Questions</h2>
         <div class="mt-5 space-y-3">
-            <details class="age-faq pt-accordion">
+            <details class="pt-faq pt-accordion">
                 <summary class="flex items-center justify-between gap-3">
                     <span>Does the calculator account for leap years?</span>
                     <span class="faq-plus text-xl leading-none text-stone-500">+</span>
@@ -192,7 +193,7 @@
                     Yes. The date math uses real calendar dates, so leap-day years are handled automatically.
                 </p>
             </details>
-            <details class="age-faq pt-accordion">
+            <details class="pt-faq pt-accordion">
                 <summary class="flex items-center justify-between gap-3">
                     <span>What is the difference between chronological and biological age?</span>
                     <span class="faq-plus text-xl leading-none text-stone-500">+</span>
@@ -201,7 +202,7 @@
                     Chronological age is based on your birth date; biological age reflects physical health and lifestyle.
                 </p>
             </details>
-            <details class="age-faq pt-accordion">
+            <details class="pt-faq pt-accordion">
                 <summary class="flex items-center justify-between gap-3">
                     <span>Can I calculate age on a future date?</span>
                     <span class="faq-plus text-xl leading-none text-stone-500">+</span>
@@ -213,31 +214,6 @@
         </div>
     </section>
 @endsection
-
-@push('head')
-    <style>
-        .age-faq summary {
-            list-style: none;
-        }
-
-        .age-faq summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .age-faq summary .faq-plus {
-            transition: transform 0.2s ease;
-        }
-
-        .age-faq[open] summary .faq-plus {
-            transform: rotate(45deg);
-        }
-
-        .age-date::-webkit-calendar-picker-indicator {
-            cursor: pointer;
-            opacity: 0.75;
-        }
-    </style>
-@endpush
 
 @push('scripts')
     <script>
