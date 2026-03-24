@@ -39,6 +39,19 @@
 
                 <form id="snow-form" class="mt-6 space-y-6" novalidate>
                     <div class="grid gap-6 md:grid-cols-2">
+                        <div class="pt-field md:col-span-2">
+                            <label for="location-query" class="pt-label">City or ZIP Code</label>
+                            <input
+                                id="location-query"
+                                type="text"
+                                class="pt-input"
+                                placeholder="Enter city or ZIP code">
+                            @include('components.loading-indicator', [
+                                'id' => 'weather-autofill-loading',
+                                'label' => 'Fetching weather data...',
+                            ])
+                        </div>
+
                         <div class="pt-field">
                             <label for="school-type" class="pt-label">School Type</label>
                             <select id="school-type" class="pt-input pt-input-tall" required>
@@ -368,6 +381,7 @@
     <script>
         (() => {
             const form = document.getElementById('snow-form');
+            const locationQuery = document.getElementById('location-query');
             const schoolType = document.getElementById('school-type');
             const districtStrictness = document.getElementById('district-strictness');
             const stormTiming = document.getElementById('storm-timing');
@@ -375,6 +389,7 @@
             const snowIn = document.getElementById('snow-in');
             const iceIn = document.getElementById('ice-in');
             const windMph = document.getElementById('wind-mph');
+            const weatherAutofillLoading = document.getElementById('weather-autofill-loading');
             const errorBox = document.getElementById('snow-error');
 
             const percentEl = document.getElementById('snow-percent');
@@ -388,6 +403,13 @@
             const scorePolicy = document.getElementById('score-policy');
 
             const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+            const roundTo = (value, decimals) => {
+                if (!Number.isFinite(value)) {
+                    return '';
+                }
+
+                return value.toFixed(decimals);
+            };
 
             const schoolTypeScores = {
                 elementary: 100,
@@ -410,6 +432,11 @@
                 'after-school': 25,
             };
 
+            let autofillAbortController = null;
+            let lastAutofillQuery = '';
+            let autofillTimer = null;
+            let isAutofillLoading = false;
+
             const resetResults = () => {
                 percentEl.textContent = '--';
                 summaryEl.textContent = 'No estimate yet';
@@ -430,6 +457,29 @@
             const hideError = () => {
                 errorBox.textContent = '';
                 errorBox.classList.add('hidden');
+            };
+
+            const setWeatherAutofillLoading = (isLoading) => {
+                isAutofillLoading = isLoading;
+
+                if (!weatherAutofillLoading) {
+                    return;
+                }
+
+                weatherAutofillLoading.hidden = !isLoading;
+                weatherAutofillLoading.setAttribute('aria-hidden', isLoading ? 'false' : 'true');
+            };
+
+            const joinLabels = (labels) => {
+                if (labels.length <= 1) {
+                    return labels[0] || '';
+                }
+
+                if (labels.length === 2) {
+                    return `${labels[0]} and ${labels[1]}`;
+                }
+
+                return `${labels.slice(0, -1).join(', ')}, and ${labels[labels.length - 1]}`;
             };
 
             const getTempScore = (temp) => {
@@ -456,9 +506,211 @@
                 return 'Very low closure risk';
             };
 
+            const getMorningForecast = (hourly = {}) => {
+                const times = Array.isArray(hourly.time) ? hourly.time : [];
+                const temperatures = Array.isArray(hourly.temperature_2m) ? hourly.temperature_2m : [];
+                const snowfall = Array.isArray(hourly.snowfall) ? hourly.snowfall : [];
+                const windSpeeds = Array.isArray(hourly.windspeed_10m) ? hourly.windspeed_10m : [];
+
+                if (!times.length || !temperatures.length || !snowfall.length || !windSpeeds.length) {
+                    return null;
+                }
+
+                const morningBuckets = new Map();
+
+                times.forEach((time, index) => {
+                    const hour = Number.parseInt(String(time).slice(11, 13), 10);
+
+                    if (!Number.isFinite(hour) || hour < 6 || hour > 9) {
+                        return;
+                    }
+
+                    const dateKey = String(time).slice(0, 10);
+
+                    if (!morningBuckets.has(dateKey)) {
+                        morningBuckets.set(dateKey, []);
+                    }
+
+                    morningBuckets.get(dateKey).push({
+                        temp: Number.parseFloat(temperatures[index]),
+                        snowfall: Number.parseFloat(snowfall[index]),
+                        wind: Number.parseFloat(windSpeeds[index]),
+                    });
+                });
+
+                const firstMorning = [...morningBuckets.values()][0];
+
+                if (!firstMorning?.length) {
+                    return null;
+                }
+
+                const avg = (values) => {
+                    const filtered = values.filter(Number.isFinite);
+
+                    if (!filtered.length) {
+                        return null;
+                    }
+
+                    return filtered.reduce((sum, value) => sum + value, 0) / filtered.length;
+                };
+
+                const sum = (values) => values.filter(Number.isFinite).reduce((total, value) => total + value, 0);
+
+                return {
+                    temperatureF: avg(firstMorning.map((entry) => entry.temp)),
+                    snowfallInches: sum(firstMorning.map((entry) => entry.snowfall)),
+                    windMphValue: avg(firstMorning.map((entry) => entry.wind)),
+                };
+            };
+
+            const applyAutofill = (forecast) => {
+                if (!forecast) {
+                    return;
+                }
+
+                const temperatureF = forecast.temperatureF;
+                const snowfallInches = forecast.snowfallInches;
+                const windMphValue = forecast.windMphValue;
+                const estimatedIce = Number.isFinite(temperatureF) && temperatureF < 32 && Number.isFinite(snowfallInches) && snowfallInches > 0
+                    ? snowfallInches * 0.3
+                    : 0;
+
+                if (Number.isFinite(temperatureF)) {
+                    tempF.value = roundTo(temperatureF, 1);
+                }
+
+                if (Number.isFinite(snowfallInches)) {
+                    snowIn.value = roundTo(snowfallInches, 1);
+                }
+
+                if (Number.isFinite(windMphValue)) {
+                    windMph.value = roundTo(windMphValue, 1);
+                }
+
+                iceIn.value = roundTo(clamp(estimatedIce, 0, 1), 2);
+                hideError();
+                resetResults();
+            };
+
+            const fetchWeatherAutofill = async (rawQuery) => {
+                const query = String(rawQuery || '').trim();
+
+                if (!query || query === lastAutofillQuery) {
+                    return;
+                }
+
+                if (autofillAbortController) {
+                    autofillAbortController.abort();
+                }
+
+                const controller = new AbortController();
+                autofillAbortController = controller;
+                setWeatherAutofillLoading(true);
+
+                try {
+                    const geocodeUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1`;
+                    const geocodeResponse = await fetch(geocodeUrl, { signal: controller.signal });
+
+                    if (!geocodeResponse.ok) {
+                        throw new Error(`Geocoding failed with status ${geocodeResponse.status}`);
+                    }
+
+                    const geocodeData = await geocodeResponse.json();
+                    const location = geocodeData?.results?.[0];
+                    const latitude = Number.parseFloat(location?.latitude);
+                    const longitude = Number.parseFloat(location?.longitude);
+
+                    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+                        return;
+                    }
+
+                    const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${encodeURIComponent(latitude)}&longitude=${encodeURIComponent(longitude)}&hourly=temperature_2m,snowfall,windspeed_10m&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`;
+                    const forecastResponse = await fetch(forecastUrl, { signal: controller.signal });
+
+                    if (!forecastResponse.ok) {
+                        throw new Error(`Forecast failed with status ${forecastResponse.status}`);
+                    }
+
+                    const forecastData = await forecastResponse.json();
+                    applyAutofill(getMorningForecast(forecastData?.hourly));
+                    lastAutofillQuery = query;
+                } catch (error) {
+                    if (error?.name !== 'AbortError') {
+                        console.error('Snow day weather autofill failed.', error);
+                    }
+                } finally {
+                    if (autofillAbortController === controller) {
+                        autofillAbortController = null;
+                        setWeatherAutofillLoading(false);
+                    }
+                }
+            };
+
+            const queueWeatherAutofill = () => {
+                const query = locationQuery.value.trim();
+
+                if (!query) {
+                    window.clearTimeout(autofillTimer);
+                    lastAutofillQuery = '';
+                    if (autofillAbortController) {
+                        autofillAbortController.abort();
+                        autofillAbortController = null;
+                    }
+                    setWeatherAutofillLoading(false);
+                    return;
+                }
+
+                window.clearTimeout(autofillTimer);
+                autofillTimer = window.setTimeout(() => {
+                    fetchWeatherAutofill(query);
+                }, 250);
+            };
+
             const calculate = () => {
-                if (!schoolType.value || !districtStrictness.value || !stormTiming.value) {
-                    showError('Please choose school type, district strictness, and storm timing.');
+                const missingSelects = [];
+
+                if (!schoolType.value) {
+                    missingSelects.push('school type');
+                }
+
+                if (!districtStrictness.value) {
+                    missingSelects.push('district strictness');
+                }
+
+                if (!stormTiming.value) {
+                    missingSelects.push('storm timing');
+                }
+
+                if (missingSelects.length) {
+                    showError(`Please choose ${joinLabels(missingSelects)}.`);
+                    return;
+                }
+
+                const missingNumbers = [];
+
+                if (!tempF.value.trim()) {
+                    missingNumbers.push('morning temperature');
+                }
+
+                if (!snowIn.value.trim()) {
+                    missingNumbers.push('forecast snow');
+                }
+
+                if (!iceIn.value.trim()) {
+                    missingNumbers.push('forecast ice');
+                }
+
+                if (!windMph.value.trim()) {
+                    missingNumbers.push('wind speed');
+                }
+
+                if (missingNumbers.length) {
+                    if (isAutofillLoading && locationQuery.value.trim()) {
+                        showError('Weather data is still loading. Please wait a moment or enter the forecast manually.');
+                        return;
+                    }
+
+                    showError(`Please enter ${joinLabels(missingNumbers)}.`);
                     return;
                 }
 
@@ -511,6 +763,8 @@
                 event.preventDefault();
                 calculate();
             });
+
+            locationQuery.addEventListener('blur', queueWeatherAutofill);
 
             [schoolType, districtStrictness, stormTiming, tempF, snowIn, iceIn, windMph].forEach((element) => {
                 element.addEventListener('input', () => {
