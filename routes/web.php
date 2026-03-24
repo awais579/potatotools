@@ -42,6 +42,15 @@ Route::get('/tools/snow-day-calculator', function () use ($getHomePageData) {
     ]);
 })->name('tools.snow-day-calculator');
 
+Route::redirect('/tools/text-to-handwriting', '/tools/text-to-handwriting-converter', 301);
+Route::redirect('/tools/text-to-handwritting-converter', '/tools/text-to-handwriting-converter', 301);
+
+Route::get('/tools/text-to-handwriting-converter', function () use ($getHomePageData) {
+    return view('tools.text-to-handwriting-converter', [
+        'homePageData' => $getHomePageData(),
+    ]);
+})->name('tools.text-to-handwriting-converter');
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');

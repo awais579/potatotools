@@ -66,9 +66,9 @@
       {
         "icon_class": "fa-solid fa-pen-nib",
         "title": "Text to Handwriting",
-        "description": "Turn plain text into handwriting style images for notes, posts, and fun.",
+        "description": "Turn plain text into handwriting-style pages and export clean PNG or PDF files.",
         "category": "Fun & Creative Tools",
-        "url": "/tools/text-to-handwriting",
+        "url": "/tools/text-to-handwriting-converter",
         "aria_label": "Open Text to Handwriting tool",
         "badge": "No login required"
       },
@@ -134,8 +134,8 @@
           {
             "icon_class": "fa-solid fa-pen-nib",
             "title": "Text to Handwriting Converter",
-            "description": "Turn typed text into handwriting-style pages for quick exports.",
-            "url": "/tools/text-to-handwriting",
+            "description": "Turn typed text into handwriting-style pages with live preview and instant exports.",
+            "url": "/tools/text-to-handwriting-converter",
             "aria_label": "Open Text to Handwriting Converter tool"
           },
           {
@@ -242,12 +242,12 @@
         "badge": "New"
       },
       {
-        "icon_class": "fa-solid fa-paw",
-        "title": "Random Animal Generator",
-        "description": "Generate random animal ideas for fun, learning, and classroom use.",
+        "icon_class": "fa-solid fa-pen-nib",
+        "title": "Text to Handwriting Converter",
+        "description": "Create handwriting-style pages from typed text and download them as PNG or PDF.",
         "category": "Fun & Creative Tools",
-        "url": "/tools/random-animal-generator",
-        "aria_label": "Open Random Animal Generator tool",
+        "url": "/tools/text-to-handwriting-converter",
+        "aria_label": "Open Text to Handwriting Converter tool",
         "badge": "New"
       }
     ]
@@ -312,6 +312,33 @@
         {
           "question": "When should I check again?",
           "answer": "Check again closer to snowfall, especially 12 to 18 hours before the expected event."
+        }
+      ]
+    },
+    "text_to_handwriting_converter": {
+      "title": "Frequently Asked Questions",
+      "description": "Quick answers about fonts, page styles, privacy, and exporting handwritten pages.",
+      "open_first": true,
+      "items": [
+        {
+          "question": "How does this text to handwriting converter work?",
+          "answer": "You type or paste text, choose a page background, pick a handwriting font, and the tool renders your text onto a paper-style canvas in the browser."
+        },
+        {
+          "question": "Can I download the result as PNG and PDF?",
+          "answer": "Yes. This version exports the current single-page preview as a PNG image or a PDF file."
+        },
+        {
+          "question": "Does my text get uploaded to a server?",
+          "answer": "No. Rendering happens in your browser on the page, so your text stays on your device during normal use."
+        },
+        {
+          "question": "Why does long text stop before the end?",
+          "answer": "This release is a single-page handwriting converter. If your text exceeds the available writing area, the page shows how many extra lines would need a second page."
+        },
+        {
+          "question": "Which paper styles are available?",
+          "answer": "You can switch between plain white paper, notebook paper, yellow legal pad, exam answer sheet paper, and vintage paper sheet backgrounds."
         }
       ]
     },
