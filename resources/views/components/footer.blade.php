@@ -3,7 +3,10 @@
         <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
             <div>
                 <a href="{{ route('home') }}" class="inline-flex items-center gap-2">
-                    <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary">PT</span>
+                    <img
+                        src="{{ asset('images/logo2.png') }}"
+                        alt="PotatoTools logo"
+                        class="h-11 w-11 rounded-xl object-contain">
                     <span class="font-display text-xl font-semibold text-stone-900">PotatoTools</span>
                 </a>
                 <p class="mt-4 max-w-md text-sm leading-relaxed text-stone-600">

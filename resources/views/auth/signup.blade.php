@@ -10,7 +10,10 @@
             <section class="flex items-stretch bg-white p-5 shadow-[18px_0_40px_rgba(32,24,16,0.12)] sm:p-6 lg:p-8">
                 <div class="mx-auto flex h-full w-full max-w-md flex-col pt-2 sm:pt-3">
                     <a href="{{ route('home') }}" class="inline-flex items-center gap-2">
-                        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/15 text-sm font-bold text-primary">PT</span>
+                        <img
+                            src="{{ asset('images/logo2.png') }}"
+                            alt="PotatoTools logo"
+                            class="h-12 w-12 rounded-xl object-contain">
                         <span class="text-lg font-semibold text-stone-900">PotatoTools</span>
                     </a>
 

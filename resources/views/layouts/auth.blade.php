@@ -6,6 +6,7 @@
     <title>@yield('title', 'PotatoTools')</title>
     <meta name="description" content="@yield('description', 'Simple and practical online tools.')">
     <link rel="canonical" href="@yield('canonical', url()->current())">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo2.png') }}">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PotatoTools">

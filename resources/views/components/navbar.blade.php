@@ -17,11 +17,14 @@
     ];
 @endphp
 
-<header class="relative z-30 border-b border-stone-200/50 bg-potato-beige/95 backdrop-blur">
+<header class="relative z-30 border-b border-stone-300/60 bg-[#f3eadb]/98 shadow-[0_10px_30px_rgba(32,24,16,0.06)] backdrop-blur">
     <div class="pt-container py-3">
         <div class="flex items-center gap-3">
             <a href="{{ route('home') }}" class="inline-flex items-center gap-2">
-                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary">PT</span>
+                <img
+                    src="{{ asset('images/logo2.png') }}"
+                    alt="PotatoTools logo"
+                    class="h-11 w-11 rounded-xl object-contain">
                 <span class="font-display text-lg font-semibold text-stone-900">PotatoTools</span>
             </a>
 
