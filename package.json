@@ -16,6 +16,10 @@
     },
     "dependencies": {
         "jspdf": "^4.2.0",
-        "quill": "^2.0.3"
+        "flatpickr": "^4.6.13",
+        "notyf": "^3.10.0",
+        "quill": "^2.0.3",
+        "slim-select": "^3.4.3",
+        "tippy.js": "^6.3.7"
     }
 }

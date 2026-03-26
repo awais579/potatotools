@@ -17,7 +17,12 @@
         </nav>
 
         <div class="mt-5">
-            <h1 class="text-3xl font-semibold text-stone-900 sm:text-5xl">Age Calculator</h1>
+            <div class="pt-page-title-row">
+                <span class="pt-page-title-icon" aria-hidden="true">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </span>
+                <h1 class="text-3xl font-semibold text-stone-900 sm:text-5xl">Age Calculator</h1>
+            </div>
             <p class="mt-4 max-w-2xl text-sm leading-relaxed text-stone-600 sm:text-base">
                 Calculate exact age in years, months, and days with a simple date-based calculator.
             </p>
@@ -40,20 +45,35 @@
                 <form id="age-form" class="mt-6 space-y-6" novalidate>
                     <div class="grid gap-6">
                         <div class="pt-field">
-                            <label for="birth-date" class="pt-label">Date of Birth</label>
-                            <input
-                                id="birth-date"
-                                type="date"
-                                class="pt-date-input pt-input pt-input-tall"
-                                required>
+                            <label for="birth-date" class="pt-label">Date of Birth<span class="pt-required-mark" aria-hidden="true">*</span></label>
+                            <div class="pt-date-field">
+                                <input
+                                    id="birth-date"
+                                    type="text"
+                                    class="pt-date-input pt-input pt-input-tall"
+                                    placeholder="dd/mm/yyyy"
+                                    data-pt-datepicker
+                                    required>
+                                <button type="button" class="pt-date-trigger" data-pt-datepicker-open="birth-date" aria-label="Open date of birth calendar">
+                                    <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                </button>
+                            </div>
                         </div>
 
                         <div class="pt-field">
                             <label for="as-of-date" class="pt-label">Calculate Age On</label>
-                            <input
-                                id="as-of-date"
-                                type="date"
-                                class="pt-date-input pt-input pt-input-tall">
+                            <div class="pt-date-field">
+                                <input
+                                    id="as-of-date"
+                                    type="text"
+                                    class="pt-date-input pt-input pt-input-tall"
+                                    placeholder="dd/mm/yyyy"
+                                    data-pt-datepicker
+                                    data-pt-datepicker-default="today">
+                                <button type="button" class="pt-date-trigger" data-pt-datepicker-open="as-of-date" aria-label="Open calculation date calendar">
+                                    <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                </button>
+                            </div>
                             <p class="text-xs text-stone-500">Leave this date as today or choose any other day.</p>
                         </div>
                     </div>
@@ -291,7 +311,9 @@
                 if (!value) {
                     return null;
                 }
-                const parts = value.split('-').map(Number);
+
+                const normalizedValue = value.includes('/') ? value.split('/').reverse().join('-') : value;
+                const parts = normalizedValue.split('-').map(Number);
                 if (parts.length !== 3 || parts.some((part) => !Number.isFinite(part))) {
                     return null;
                 }
@@ -308,10 +330,10 @@
             };
 
             const formatDateInput = (date) => {
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
                 const day = String(date.getDate()).padStart(2, '0');
-                return `${year}-${month}-${day}`;
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day}/${month}/${year}`;
             };
 
             const getSafeBirthday = (birthDate, year) => {
@@ -398,7 +420,13 @@
             };
 
             if (!asOfDateInput.value) {
-                asOfDateInput.value = formatDateInput(new Date());
+                const today = new Date();
+
+                if (asOfDateInput._flatpickr) {
+                    asOfDateInput._flatpickr.setDate(today, true, 'd/m/Y');
+                } else {
+                    asOfDateInput.value = formatDateInput(today);
+                }
             }
 
             resetResults();
@@ -408,15 +436,15 @@
                 calculate();
             });
 
-            birthDateInput.addEventListener('input', () => {
+            const handleInputChange = () => {
                 hideError();
                 resetResults();
-            });
+            };
 
-            asOfDateInput.addEventListener('input', () => {
-                hideError();
-                resetResults();
-            });
+            birthDateInput.addEventListener('input', handleInputChange);
+            birthDateInput.addEventListener('change', handleInputChange);
+            asOfDateInput.addEventListener('input', handleInputChange);
+            asOfDateInput.addEventListener('change', handleInputChange);
         })();
     </script>
 @endpush

@@ -21,7 +21,12 @@
         </nav>
 
         <div class="mt-5">
-            <h1 class="text-3xl font-semibold text-stone-900 sm:text-5xl">Height Converter</h1>
+            <div class="pt-page-title-row">
+                <span class="pt-page-title-icon" aria-hidden="true">
+                    <i class="fa-solid fa-ruler-combined"></i>
+                </span>
+                <h1 class="text-3xl font-semibold text-stone-900 sm:text-5xl">Height Converter</h1>
+            </div>
             <p class="mt-4 max-w-2xl text-sm leading-relaxed text-stone-600 sm:text-base">
                 Convert height units and see the result in all common formats.
             </p>
@@ -55,9 +60,9 @@
                                 placeholder="Enter value">
                         </div>
 
-                        <div class="pt-field">
+                        <div class="pt-field pt-select-shell">
                             <label for="convertSource" class="pt-label">Convert From</label>
-                            <select id="convertSource" class="pt-input pt-input-tall">
+                            <select id="convertSource" class="pt-input pt-input-tall" data-pt-select>
                                 <option value="cm" selected>Centimeters (cm)</option>
                                 <option value="m">Meters (m)</option>
                                 <option value="ft">Feet (ft)</option>
@@ -65,9 +70,9 @@
                             </select>
                         </div>
 
-                        <div class="pt-field">
+                        <div class="pt-field pt-select-shell">
                             <label for="convertTarget" class="pt-label">Convert To</label>
-                            <select id="convertTarget" class="pt-input pt-input-tall">
+                            <select id="convertTarget" class="pt-input pt-input-tall" data-pt-select>
                                 <option value="ftin" selected>Feet + Inches (ft/in)</option>
                                 <option value="cm">Centimeters (cm)</option>
                                 <option value="m">Meters (m)</option>

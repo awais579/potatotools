@@ -8,6 +8,10 @@ Read this file before making any UI, Blade, Tailwind, or SEO-related changes in 
 - Vite handles CSS/JS bundling.
 - Main layout: `resources/views/layouts/app.blade.php`.
 - Routes live in `routes/web.php`.
+- Shared datepicker inputs use `flatpickr` via `resources/js/app.js`.
+- Shared select inputs use `slim-select` via `resources/js/app.js`.
+- Shared toast notifications use `notyf` via `resources/js/app.js`.
+- Shared tooltips use `tippy.js` via `resources/js/app.js`.
 
 ## Core UI Principle
 - This project uses a Tailwind-first hybrid system.
@@ -38,6 +42,9 @@ Use these before inventing new classes:
 - `pt-chip-static`
 - `pt-input`
 - `pt-input-tall`
+- `pt-date-field`
+- `pt-date-trigger`
+- `pt-select-shell`
 - `pt-label`
 - `pt-field`
 - `pt-pill-group`
@@ -48,10 +55,16 @@ Use these before inventing new classes:
 - `pt-tool-card`
 - `pt-link-arrow`
 - `pt-image-placeholder`
+- `pt-label-row`
+- `pt-info-trigger`
+- `pt-toast-error`
+- `pt-toast-success`
 
 If a pattern repeats across pages, promote it into a shared `pt-*` primitive instead of solving it locally again.
 
 ## Styling Rules
+- Use Tailwind utilities as the default and maximum-first styling approach.
+- Only add custom CSS when the layout or behavior cannot be handled cleanly with Tailwind or an existing shared `pt-*` primitive.
 - Prefer utility classes for:
   - margin
   - padding
@@ -127,6 +140,12 @@ For new tool pages, follow this structure when possible:
 ## Form Rules
 - Use `pt-label` for labels.
 - Wrap label + control in `pt-field` when vertical rhythm is needed.
+- For date inputs, do not use the native browser date picker UI.
+- Use the shared `flatpickr` pattern with `data-pt-datepicker` and the shared date trigger styling.
+- For select boxes, do not rely on the raw browser dropdown UI.
+- Use the shared `slim-select` pattern with `data-pt-select` and the shared `pt-select-shell` wrapper.
+- If a label needs short helper context, prefer a small tooltip trigger beside the label instead of adding noisy inline helper text.
+- Keep tooltip copy minimal, literal, and beginner-friendly.
 - Use `pt-input` for standard controls.
 - Use `pt-input-tall` when this tool UI requires larger controls.
 - Do not prefill example values unless there is a strong product reason.
@@ -136,6 +155,17 @@ For new tool pages, follow this structure when possible:
 - Reuse `pt-link-arrow` for arrow links.
 - Reuse `pt-tool-card` for linked cards.
 - Use `pt-chip-static` for informational chips that should not feel interactive.
+- If a tool already has an assigned icon, reuse that same icon everywhere for that tool:
+  - home/tool cards
+  - page heading
+  - repeated references to the same tool
+- Do not switch icons for the same tool across different sections unless there is a very strong product reason.
+- Use toast notifications for transient async feedback such as:
+  - invalid postal/ZIP lookup
+  - fetch failure
+  - data not found
+- Do not use toasts for normal required-field validation inside forms; show those near the relevant form action or inline in the form.
+- When a short clarification on hover/focus is enough, use the shared tooltip pattern instead of expanding the layout with extra copy.
 - If something is clickable, cursor and hover should make that obvious.
 - If something is not clickable, it should not look interactive.
 
@@ -153,6 +183,10 @@ For new tool pages, follow this structure when possible:
 - Keep tool logic inside page `@push('scripts')` if it is page-specific.
 - Do not mix styling fixes into JS.
 - JS should toggle states and results, not patch spacing/layout problems.
+- Reuse the global `window.ptNotify` helper from `resources/js/app.js` for toast feedback instead of creating page-local notification systems.
+- Reuse the shared `data-pt-tooltip` pattern for simple label help instead of inventing custom tooltip JS per page.
+- Reuse the shared `data-pt-datepicker` and `data-pt-datepicker-open` pattern for date fields instead of native `type="date"` UI.
+- Reuse the shared `data-pt-select` pattern for select boxes instead of native select dropdown UI.
 
 ## When Adding New Shared Styles
 - Add them to `resources/css/app.css`.
