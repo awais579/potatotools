@@ -1,0 +1,75 @@
+{
+  "model_name": "PotatoTools Snow Day Calculator",
+  "model_version": "2.0.1",
+  "last_updated": "2026-03-25",
+  "owner": "PotatoTools Editorial and Engineering Team",
+  "summary": "History-adjusted school closure estimate that compares forecast snow, cold, and wind against the last five years of nearby winter weather, then combines that with estimated ice, storm timing, and user-selected school policy signals.",
+  "weather_data_window": "5 years",
+  "seasonal_window_days": 45,
+  "weights": [
+    {
+      "label": "Snow",
+      "weight": 0.3,
+      "method": "Forecast snowfall is normalized against nearby historical snowfall totals from the seasonal window around the forecast date."
+    },
+    {
+      "label": "Ice",
+      "weight": 0.25,
+      "method": "Ice remains a direct risk factor, but the fetched value is a capped estimate built from freezing-weather signals because reliable local ice-history coverage is less consistent."
+    },
+    {
+      "label": "Storm Timing",
+      "weight": 0.15,
+      "method": "Timing is a heuristic operational signal. Morning commute and overnight storms score higher than after-school events."
+    },
+    {
+      "label": "Temperature",
+      "weight": 0.1,
+      "method": "Colder-than-usual mornings receive higher scores by comparing forecast temperature to nearby historical winter lows."
+    },
+    {
+      "label": "Wind",
+      "weight": 0.1,
+      "method": "Wind is normalized against nearby historical winter maximum wind speeds for the same seasonal window."
+    },
+    {
+      "label": "School Policy",
+      "weight": 0.1,
+      "method": "School type and district strictness remain user-supplied heuristic policy inputs because district-level operational rules are not publicly standardized."
+    }
+  ],
+  "data_sources": [
+    {
+      "name": "Open-Meteo Forecast API",
+      "url": "https://open-meteo.com/en/docs",
+      "role": "Current forecast weather"
+    },
+    {
+      "name": "Open-Meteo Historical Weather API",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "role": "Five-year local winter baseline"
+    },
+    {
+      "name": "NOAA Climate Data Online",
+      "url": "https://www.ncdc.noaa.gov/cdo-web/",
+      "role": "Public climate reference and methodology support"
+    },
+    {
+      "name": "National Weather Service Winter Safety",
+      "url": "https://www.weather.gov/arx/wintersafety",
+      "role": "Public winter travel risk guidance"
+    }
+  ],
+  "limitations": [
+    "This model is not an official school district closure formula.",
+    "The tool does not yet ingest full district-by-district historical closure feeds nationwide.",
+    "Estimated ice is inferred from forecast freezing-weather signals, not direct measured ice accumulation.",
+    "School type and district strictness are user-entered policy signals, not official district operations data.",
+    "Location-based weather lookups work best where forecast and archive coverage are both available."
+  ],
+  "next_steps": [
+    "Expand the hand-audited closure dataset into a larger benchmark set.",
+    "Backtest the model against more public district notices across multiple winters.",
+    "Move validation scoring into a reproducible backend job once a larger closure-history corpus is available."
+  ]
+}

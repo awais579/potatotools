@@ -3,6 +3,18 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+$loadJsonData = function (string $relativePath, array $fallback = []) {
+    $fullPath = resource_path($relativePath);
+
+    if (!is_file($fullPath)) {
+        return $fallback;
+    }
+
+    $decoded = json_decode(file_get_contents($fullPath), true);
+
+    return json_last_error() === JSON_ERROR_NONE && is_array($decoded) ? $decoded : $fallback;
+};
+
 $getHomePageData = function () {
     $homePageDataPath = resource_path('data/homepage-tools.json');
     $homePageData = [];
@@ -36,11 +48,25 @@ Route::get('/tools/age-calculator', function () {
     return view('tools.age-calculator');
 })->name('tools.age-calculator');
 
-Route::get('/tools/snow-day-calculator', function () use ($getHomePageData) {
+Route::get('/tools/snow-day-calculator', function () use ($getHomePageData, $loadJsonData) {
     return view('tools.snow-day-calculator', [
         'homePageData' => $getHomePageData(),
+        'snowDayMethodology' => $loadJsonData('data/snow-day-methodology.json'),
+        'snowDayValidation' => $loadJsonData('data/snow-day-validation.json'),
     ]);
 })->name('tools.snow-day-calculator');
+
+Route::get('/tools/snow-day-calculator/methodology', function () use ($loadJsonData) {
+    return view('tools.snow-day-calculator-methodology', [
+        'methodology' => $loadJsonData('data/snow-day-methodology.json'),
+    ]);
+})->name('tools.snow-day-calculator.methodology');
+
+Route::get('/tools/snow-day-calculator/validation', function () use ($loadJsonData) {
+    return view('tools.snow-day-calculator-validation', [
+        'validation' => $loadJsonData('data/snow-day-validation.json'),
+    ]);
+})->name('tools.snow-day-calculator.validation');
 
 Route::get('/login', function () {
     return view('auth.login');

@@ -1,0 +1,62 @@
+{
+  "dataset_name": "PotatoTools Snow Day Validation Set",
+  "dataset_version": "2026-03-24",
+  "coverage_note": "Starter hand-audited benchmark set of public district notices used to review whether the model's risk framing matches real winter operating outcomes.",
+  "owner": "PotatoTools Editorial and Engineering Team",
+  "records": [
+    {
+      "date": "2024-01-16",
+      "district": "Springfield Township School District",
+      "state": "Pennsylvania",
+      "outcome": "Closed",
+      "target_band": "High to very high risk",
+      "reason": "Snow-covered secondary roads and freezing rain risk",
+      "source_url": "https://www.sdst.org/district/office_of_the_superintendent/school_closings_or_delays_due_to_weather"
+    },
+    {
+      "date": "2024-01-12",
+      "district": "Oshkosh Area School District",
+      "state": "Wisconsin",
+      "outcome": "Closed",
+      "target_band": "High to very high risk",
+      "reason": "Snow day notice issued by the district",
+      "source_url": "https://www.oasd.k12.wi.us/families/closings-and-delays"
+    },
+    {
+      "date": "2024-01-19",
+      "district": "Deer Park Community City School District",
+      "state": "Ohio",
+      "outcome": "Closed",
+      "target_band": "High to very high risk",
+      "reason": "Winter weather closure notice",
+      "source_url": "https://www.deerparkschools.org/news/what_s_new/winter_weather__school_closing_and_delay_information"
+    },
+    {
+      "date": "2024-01-17",
+      "district": "Issaquah School District",
+      "state": "Washington",
+      "outcome": "Two-hour delay",
+      "target_band": "Moderate to high risk",
+      "reason": "Late-start notice due to winter weather and road conditions",
+      "source_url": "https://www.isd411.org/about-us/school-closure"
+    },
+    {
+      "date": "2024-01-16",
+      "district": "Middletown Area School District",
+      "state": "Pennsylvania",
+      "outcome": "Two-hour delay",
+      "target_band": "Moderate risk",
+      "reason": "District weather delay notice",
+      "source_url": "https://www.raiderweb.org/weather-delays-and-cancellations"
+    },
+    {
+      "date": "2024-01-16",
+      "district": "Little Rock School District",
+      "state": "Arkansas",
+      "outcome": "Virtual learning day",
+      "target_band": "Moderate to high risk",
+      "reason": "Remote instruction used in place of normal travel operations",
+      "source_url": "https://www.lrsd.org/site/default.aspx?PageType=3&DomainID=4&ModuleInstanceID=6&ViewID=6446EE88-D30C-497E-9316-3F8874B3E108&RenderLoc=0&FlexDataID=21131&PageID=1"
+    }
+  ]
+}
