@@ -8,6 +8,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/tools/csv-to-json-converter.js',
                 'resources/js/tools/text-to-handwriting-converter.js',
             ],
             refresh: true,

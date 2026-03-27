@@ -12,6 +12,7 @@ Read this file before making any UI, Blade, Tailwind, or SEO-related changes in 
 - Shared select inputs use `slim-select` via `resources/js/app.js`.
 - Shared toast notifications use `notyf` via `resources/js/app.js`.
 - Shared tooltips use `tippy.js` via `resources/js/app.js`.
+- CSV parsing for the CSV to JSON tool uses `papaparse` via `resources/js/tools/csv-to-json-converter.js`.
 
 ## Core UI Principle
 - This project uses a Tailwind-first hybrid system.
@@ -187,6 +188,7 @@ For new tool pages, follow this structure when possible:
 - Reuse the shared `data-pt-tooltip` pattern for simple label help instead of inventing custom tooltip JS per page.
 - Reuse the shared `data-pt-datepicker` and `data-pt-datepicker-open` pattern for date fields instead of native `type="date"` UI.
 - Reuse the shared `data-pt-select` pattern for select boxes instead of native select dropdown UI.
+- For client-side preview tables or modal data previews, prefer lightweight in-page pagination and conditional issue panels before adding any heavy table/grid dependency.
 
 ## When Adding New Shared Styles
 - Add them to `resources/css/app.css`.
