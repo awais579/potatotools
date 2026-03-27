@@ -342,6 +342,33 @@
         }
       ]
     },
+    "csv_to_json_converter": {
+      "title": "Frequently Asked Questions",
+      "description": "Quick answers about CSV parsing, local processing, JSON formatting, and downloading converted output.",
+      "open_first": true,
+      "items": [
+        {
+          "question": "How does this CSV to JSON converter work?",
+          "answer": "You can paste CSV text or upload a CSV file, and the tool parses rows in the browser, detects the delimiter, and turns each row into a JSON object."
+        },
+        {
+          "question": "Does this tool automatically use the first row as headers?",
+          "answer": "Yes. The parser checks the first row and uses it as keys when it looks like a header row. If no clear headers are found, fallback column names are generated."
+        },
+        {
+          "question": "Can I remove empty values from the JSON output?",
+          "answer": "Yes. Turn off empty values in the advanced options to omit blank fields from each JSON object."
+        },
+        {
+          "question": "Does my CSV file get uploaded to a server?",
+          "answer": "No. Conversion runs in your browser on the page, so your CSV content stays on your device during normal use."
+        },
+        {
+          "question": "Can I copy or download the JSON result?",
+          "answer": "Yes. After conversion you can copy the JSON text to your clipboard or download it as a .json file."
+        }
+      ]
+    },
     "height_calculator": {
       "title": "Frequently Asked Questions",
       "description": "Quick answers about height units, conversion math, and how this converter works.",
